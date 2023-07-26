@@ -1,0 +1,289 @@
+/*Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*|| Variables*/
+:root {
+    /*font*/
+    --FF: sans-serif;
+    --FS: 1.5rem;
+    --FS-EX: 3rem;
+    /**/
+    --BGCOLOR: #475569;
+    --ALT-BGCOLOR: #1e293b;
+    --RADIAL-COLOR: whitesmoke;
+    --LIGHT-COLOR: whitesmoke;
+    --DARK-COLOR: #000;
+
+    /*General*/
+    --PADDING: 0.5rem;
+    --SHADOWS: 0 15px 5px -5px var(--DARK-COLOR);
+    --BORDERS: 2px solid var(--DARK-COLOR);
+}
+
+/* @media(prefers-color-scheme: dark) {
+    :root {
+        --BGCOLOR: #000;
+        --ALT-BGCOLOR: #333;
+        --RADIAL-COLOR: rgb(217, 217, 217);
+        --SQUARE-BGCOLOR: rbg(202, 174,202);
+    }
+} */
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/*|| Utility classes*/
+.nowrap {
+    white-space: nowrap;
+}
+
+
+/*General STYLES*/
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font: var(--FS) var(--FF);
+    min-height: 100vh;
+    /* background-color: #475569; */
+    background-image: radial-gradient(var(--RADIAL-COLOR), var(--BGCOLOR));
+    display: flex;
+    flex-direction: column;
+
+}
+
+/*We're disigning from small screen and we'll work our way up */
+
+/* header,
+nav,
+main,
+footer {
+    display: grid;
+    place-content: center;
+    grid-template-columns: 100%;
+ 
+    text-align: center;
+} */
+
+
+
+header,
+footer {
+    position: sticky;
+    background-color: var(--ALT-BGCOLOR);
+    color: var(--LIGHT-COLOR);
+    text-align: center;
+    padding: 10px;
+}
+
+/*Let provide the other values for the sticky containers */
+header {
+    top: 0;
+}
+
+footer {
+    bottom: 0;
+}
+
+nav {
+    background-color: var(--LIGHT-COLOR);
+    padding: var(--PADDING);
+    border-bottom: var(--BORDERS);
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow: var(--SHADOWS);
+}
+
+nav a:any-link {
+    color: var(--DARK-COLOR);
+}
+
+nav :is(a:hover, a:focus) {
+    color: hsla(0, 0%, 20%, 0.6);
+}
+
+nav a:active {
+    color: red;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+/*|| Profile card*/
+.card {
+    scroll-margin-top: 8rem;
+    /*16:09*/
+    width: min(100%, 350px);
+    background-color: #cbd5e1;
+    border: 2px solid var(--DARK-COLOR);
+    border-radius: 15px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*   */
+
+.card figure {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.card img {
+    border: 5px double #333;
+    border-radius: 50%;
+}
+
+.card figcaption {
+    font-weight: bolder;
+    font-size: 2rem;
+    margin: 0.5rem;
+    text-align: center;
+}
+
+/* .card figcaption::before {
+    content: 'Hello ';
+} */
+
+/*First media query for the card project*/
+@media screen and (min-width: 576px) {
+    main {
+        justify-content: center;
+        flex-flow: row wrap;
+        padding: 1rem;
+    }
+
+    .card {
+        width: min(100%, 400px);
+    }
+
+    .card:last-child {
+        order: -1;
+        /*moing the last one to the first one*/
+    }
+}
+
+/* Medium size*/
+@media screen and (min-width: 768px) {
+    nav {
+        /*when all the cards are visible there's no need for this*/
+        display: none;
+    }
+
+    .card {
+        width: min(100%, 325px);
+    }
+
+    .card figure {
+        flex-flow: column-reverse;
+    }
+
+    .card p {
+        margin-top: 1rem;
+    }
+}
+
+/* LARGE*/
+@media screen and (min-width: 992px) {
+    .card {
+        width: min(100%, 400px);
+    }
+
+    .card:nth-child(2) {
+        order: -1;
+    }
+}
+
+/* XL*/
+@media screen and (min-width: 1200px) {
+    .card {
+        width: min(calc(33% - 1rem), 500px);
+    }
+}
+
+/*MOBILE DEVICE LANDSCAPE*/
+@media screen and (max-height: 425px) and (min-aspect-ratio: 7/4) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    nav {
+        display: none;
+        /*we're displaying all the cards
+        we dont need the nav*/
+    }
+
+    main {
+        flex-flow: row nowrap;
+        /*to have just 1 line or row*/
+        justify-content: space-evenly;
+        align-items: stretch;
+    }
+
+    .card {
+        width: min(calc(33% - 0.25rem), 200px);
+    }
+
+    .card figcaption,
+    .card p {
+        font-size: 1.25rem;
+    }
+}
+
+/*|| small*/
+/*once the width its over 576px >>no less but more than 576px<< apply these changes*/
+/* @media screen and (min-width: 576px) {
+    body {
+        background-color: green;
+        background-image: radial-gradient(var(--LIGHT-COLOR), green);
+    }
+} */
+
+/*|| Medium size*/
+/* @media screen and (min-width: 768px) {
+    body {
+        background-color: gold;
+        background-image: radial-gradient(var(--LIGHT-COLOR), gold);
+    }
+} */
+
+/*|| Large size*/
+/* @media screen and (min-width: 992px) {
+    body {
+        background-color: purple;
+        background-image: radial-gradient(var(--LIGHT-COLOR), purple);
+    }
+} */
+
+/*|| MOBILE DIVECE LANDSCAPE*/
+/* @media screen and (max-height: 425px) and (min-aspect-ratio: 7/4) {
+    body {
+        background-color: dodgerblue;
+        background-image: radial-gradient(var(--LIGHT-COLOR), dodgerblue);
+    }
+
+    h1,
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    nav {
+        display: none;
+    }
+} */
